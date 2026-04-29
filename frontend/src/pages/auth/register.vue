@@ -2,6 +2,9 @@
 import useVuelidate from '@vuelidate/core';
 import { email, helpers, minLength, required, sameAs } from '@vuelidate/validators';
 import { computed, reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const userInput = reactive({
     fullname: '',
@@ -46,7 +49,7 @@ const v$ = useVuelidate(rules, userInput)
 const submitForm = async () => {
     const result = await v$.value.$validate()
     if(result) {
-        console.log('Form is valid', userInput)
+        return router.push({name: 'home'})
     }
     console.log('Form is invalid', v$.value.$errors)
 }
@@ -123,10 +126,10 @@ const submitForm = async () => {
                 <p class="info mt-1 ml-1 text-red-500" v-if="v$.confirmPassword.$error">{{
                     v$.confirmPassword.$errors[0].$message }}</p>
             </div>
-            <button type="submit" id="registerBtn" @click="submitForm">Daftar</button>
+            <button class=" bg-pr" type="submit" id="registerBtn" @click="submitForm">Daftar</button>
     
-            <p class=" text-center text-[#1c1c1c] font-normal mt-2">Sudah punya akun? Ayo <router-link :to="{ name: 'login' }"
-                    class=" text-primary hover:underline">
+            <p class=" text-center text-[#1c1c1c] font-normal mt-2">Sudah punya akun? Ayo <router-link
+                    :to="{ name: 'login' }" class=" text-primary hover:underline">
                     masuk
                 </router-link></p>
         </form>
