@@ -17,14 +17,16 @@ const btnProps = defineProps({
 })
 
 const rulesVariant = {
-    primary: 'bg-primary text-white'    
+    primary: 'bg-primary text-white',
+    danger:  'bg-red-500 text-white'
 }
 
 // console.log(rulesVariant.value)
 </script>
 
 <template>
-    <button :id="btnProps.id" :type="btnProps.type" :class="[rulesVariant[btnProps.variant] || '', 'rounded-[5px] w-full p-[0.6rem] text-sm']">
+    <button :id="btnProps.id" :type="btnProps.type"
+        :class="[rulesVariant[btnProps.variant] || '', 'rounded-[5px] w-full p-[0.6rem] text-sm']">
         <slot></slot>
     </button>
 </template>

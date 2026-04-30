@@ -36,7 +36,7 @@ const v$ = useVuelidate(rules, userInput)
 const submitForm = async () => {
     const result = await v$.value.$validate()
     if(result) {
-        return router.push({name: 'home'})
+        return router.push({name: 'dashboard'})
     }
     console.log('Form is invalid', v$.value.$errors)
 }
