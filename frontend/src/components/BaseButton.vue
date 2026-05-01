@@ -20,8 +20,8 @@ const rulesVariant = {
     primary: 'bg-primary text-white',
     primaryOutline: 'bg-transparent border border-primary text-primary',
     danger:  'bg-red-500 text-white',
-    black: 'bg-black text-white hover:bg-black/80',
-    blackOutline: 'bg-transparent border border-black text-black hover:bg-black hover:text-white'
+    dark: 'bg-black text-white hover:bg-black/80',
+    darkOutline: 'bg-transparent border border-black text-black hover:bg-black hover:text-white'
 }
 
 // console.log(rulesVariant.value)
