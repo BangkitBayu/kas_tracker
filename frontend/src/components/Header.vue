@@ -10,7 +10,7 @@ const expandedMenu = () => {
 
 </script>
 <template>
-    <header class="top-0 w-full min-h-20 shadow relative flex justify-between items-center px-6 py-2">
+    <header class="top-0 w-full min-h-20 shadow relative flex justify-between items-center px-6 py-2 z-10">
         <div class="logo flex items-center gap-2">
             <img src="../assets/img/kas-tracker-logo.png" alt="logo" class=" w-6">
             <h1 class="font-bold text-lg">Kas Tracker</h1>
@@ -36,7 +36,7 @@ const expandedMenu = () => {
             <div>
                 <h3 class=" font-medium text-black/60 text-sm">Manage</h3>
                 <ul class=" flex flex-col  text-black/60 text-lg mt-3 items-start gap-y-4 w-full">
-                    <router-link :to='{name: "cash"}' class=" group">
+                    <router-link :to='{name: "mycash"}' class=" group">
                         <li class=" p-2 flex items-center justify-center">
                             <svg class="mr-2 stroke-black/60 group-hover:stroke-primary" xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" viewBox="0 0 24 24">
@@ -50,7 +50,7 @@ const expandedMenu = () => {
                             <p class=" group-hover:text-primary">My Cash</p>
                         </li>
                     </router-link>
-                    <router-link :to='{name: "cash"}' class=" group">
+                    <router-link :to='{name: "transaction"}' class=" group">
                         <li class="p-2 flex items-center justify-center w-full">
                             <svg class="mr-2 stroke-black/60 group-hover:stroke-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24">

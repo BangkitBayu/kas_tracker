@@ -18,7 +18,10 @@ const btnProps = defineProps({
 
 const rulesVariant = {
     primary: 'bg-primary text-white',
-    danger:  'bg-red-500 text-white'
+    primaryOutline: 'bg-transparent border border-primary text-primary',
+    danger:  'bg-red-500 text-white',
+    black: 'bg-black text-white hover:bg-black/80',
+    blackOutline: 'bg-transparent border border-black text-black hover:bg-black hover:text-white'
 }
 
 // console.log(rulesVariant.value)
@@ -26,7 +29,7 @@ const rulesVariant = {
 
 <template>
     <button :id="btnProps.id" :type="btnProps.type"
-        :class="[rulesVariant[btnProps.variant] || '', 'rounded-[5px] w-full p-[0.6rem] text-sm']">
+        :class="[rulesVariant[btnProps.variant] || '', 'rounded-[5px] w-full p-[0.6rem] text-sm transition-all ease-in duration-300']">
         <slot></slot>
     </button>
 </template>
