@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->timestamps();
 
-            $table->foreign('cash_id')->references('id')->on('cash');
+            $table->foreignId('cash_id')->references('id')->on('cash');
         });
     }
 
