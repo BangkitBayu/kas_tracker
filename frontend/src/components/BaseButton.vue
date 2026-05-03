@@ -12,8 +12,8 @@ const btnProps = defineProps({
     },
     variant: {
         type: String,
-    }
-
+    },
+    customClass: String
 })
 
 const rulesVariant = {
@@ -29,7 +29,7 @@ const rulesVariant = {
 
 <template>
     <button :id="btnProps.id" :type="btnProps.type"
-        :class="[rulesVariant[btnProps.variant] || '', 'rounded-[5px] w-full p-[0.6rem] text-sm transition-all ease-in duration-300']">
+        :class="[rulesVariant[btnProps.variant] || '', 'rounded-[5px] w-full p-[0.6rem] text-sm transition-all ease-in duration-300' , btnProps.customClass]">
         <slot></slot>
     </button>
 </template>
