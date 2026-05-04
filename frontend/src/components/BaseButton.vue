@@ -17,7 +17,7 @@ const btnProps = defineProps({
 })
 
 const rulesVariant = {
-    primary: 'bg-primary text-white',
+    primary: 'bg-primary text-white hover:bg-blue-600',
     primaryOutline: 'bg-transparent border border-primary text-primary',
     danger:  'bg-red-500 text-white',
     dark: 'bg-black text-white hover:bg-black/80',

@@ -33,7 +33,7 @@ const rules = computed(() => ({
     },
     email: {
         required:helpers.withMessage('Email wajib diisi', required),
-        email: helpers.withMessage('Email tidak valid', email)
+        email: helpers.withMessage('Email invalid', email)
     },
     password: {
         required: helpers.withMessage('Password wajib diisi', required),
@@ -79,9 +79,11 @@ const submitForm = async () => {
                     placeholder="Email" v-model="userInput.email">
                 <p class="info mt-1 ml-1 text-red-500" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</p>
             </div>
-            <div class="form-group">
+            <div class="form-group flex flex-col w-full relative">
                 <div class=" relative flex w-full rounded-[5px] border border-[#cfcfcf] ">
-                    <input :type="isShowPassword ? 'text' : 'password'" name="password" id="password" placeholder="Password"
+                    <input
+                        class=" w-[85%] p-[0.6rem] focus:outline-[3px] focus:outline-[#45a8ff8d] focus:border focus:border-primary focus:rounded-xs"
+                        :type="isShowPassword ? 'text' : 'password'" name="password" id="password" placeholder="Password"
                         v-model="userInput.password">
                     <button id="togglePassword" type="button" class=" ml-2.5" @click="showedPassword">
                         <svg v-show="isShowPassword === false" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -102,10 +104,12 @@ const submitForm = async () => {
                 </div>
                 <p class="info mt-1 ml-1 text-red-500" v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</p>
             </div>
-            <div class="form-group">
+            <div class="form-group flex flex-col w-full relative">
                 <div class=" relative flex w-full rounded-[5px] border border-[#cfcfcf] ">
-                    <input :type="isShowPassword ? 'text' : 'password'" name="confirmPassword" id="confirmPassword"
-                        placeholder="Konfirmasi password" v-model="userInput.confirmPassword">
+                    <input
+                        class=" w-[85%] p-[0.6rem] focus:outline-[3px] focus:outline-[#45a8ff8d] focus:border focus:border-primary focus:rounded-xs"
+                        :type="isShowPassword ? 'text' : 'password'" name="password" id="confirmPassword" placeholder="Konfirmasi Password"
+                        v-model="userInput.confirmPassword">
                     <button id="togglePassword" type="button" class=" ml-2.5" @click="showedPassword">
                         <svg v-show="isShowPassword === false" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             viewBox="0 0 24 24" id=" open-eye" class=" transition-transform delay-150 ease-in-out">
@@ -123,8 +127,7 @@ const submitForm = async () => {
                         </svg>
                     </button>
                 </div>
-                <p class="info mt-1 ml-1 text-red-500" v-if="v$.confirmPassword.$error">{{
-                    v$.confirmPassword.$errors[0].$message }}</p>
+                <p class="info mt-1 ml-1 text-red-500" v-if="v$.password.$error">{{ v$.confirmPassword.$errors[0].$message }}</p>
             </div>
             <button class=" bg-pr" type="submit" id="registerBtn" @click="submitForm">Daftar</button>
     
