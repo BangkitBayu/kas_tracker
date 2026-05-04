@@ -26,11 +26,26 @@ class registerRequest extends FormRequest
     {
         return [
             'fullname' => ['required'],
-            'username' => ['required' , 'unique:users,username'],
+            'username' => ['required', 'unique:users,username'],
             'school' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required', 'min:8'],
             'confirm_password' => ['confirmed:password']
+        ];
+    }
+
+    #[Override]
+    public function messages()
+    {
+        return [
+            'fullname.required' => 'Nama lengkap wajib diisi',
+            'username.required' => 'Nama pengguna wajib diisi',
+            'school.required' => 'Asal sekolah wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Email invalid',
+            'password.required' => 'Password wajib diisi',
+            'password.min' => 'Password minimal 8 karakter',
+            'confirm_password' => 'Konfirmasi password tidak cocok'
         ];
     }
 
