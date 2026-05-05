@@ -40,6 +40,7 @@ class registerRequest extends FormRequest
         return [
             'fullname.required' => 'Nama lengkap wajib diisi',
             'username.required' => 'Nama pengguna wajib diisi',
+            'username.unique' => 'Nama pengguna sudah digunakan',
             'school.required' => 'Asal sekolah wajib diisi',
             'email.required' => 'Email wajib diisi',
             'email.email' => 'Email invalid',
