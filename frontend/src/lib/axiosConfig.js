@@ -7,6 +7,8 @@ const httpInterceptor = axios.create({
     Accept: "application/json",
     "Content-Type": "application/json",
   },
+  withCredentials: true,
+  withXSRFToken: true,
 });
 
 // (Interceptor/pencegat) request berjalan sebelum request dikirim ke api
@@ -36,6 +38,9 @@ httpInterceptor.interceptors.response.use(
     if (error.response?.status === 422) {
       return Promise.reject(error.response);
     }
+    // } else if (error.response?.status === 401) {
+    //   window.location.href = "/login";
+    // }
     return Promise.reject(error);
   },
 );

@@ -1,4 +1,4 @@
-import httpInterceptor from "../utils/axiosConfig";
+import httpInterceptor from "../lib/axiosConfig";
 
 class AuthService {
   async register(
@@ -9,6 +9,8 @@ class AuthService {
     password,
     confirm_password,
   ) {
+    await httpInterceptor.get("http://localhost:8000/sanctum/csrf-cookie");
+
     const response = await httpInterceptor.post("/register", {
       fullname,
       username,
@@ -18,7 +20,17 @@ class AuthService {
       confirm_password,
     });
 
-    return response
+    return response;
+  }
+  async login(email, password, remember) {
+    await httpInterceptor.get("http://localhost:8000/sanctum/csrf-cookie");
+
+    const response = await httpInterceptor.post("/login", {
+      email,
+      password,
+      remember,
+    });
+    return response;
   }
 }
 
