@@ -9,9 +9,9 @@ class AuthService {
     password,
     confirm_password,
   ) {
-    await httpInterceptor.get("http://localhost:8000/sanctum/csrf-cookie");
+    await httpInterceptor.get("/sanctum/csrf-cookie");
 
-    const response = await httpInterceptor.post("/register", {
+    const response = await httpInterceptor.post("/api/v1/register", {
       fullname,
       username,
       school,
@@ -23,9 +23,9 @@ class AuthService {
     return response;
   }
   async login(email, password, remember) {
-    await httpInterceptor.get("http://localhost:8000/sanctum/csrf-cookie");
+    await httpInterceptor.get("/sanctum/csrf-cookie");
 
-    const response = await httpInterceptor.post("/login", {
+    const response = await httpInterceptor.post("/api/v1/login", {
       email,
       password,
       remember,
