@@ -1,9 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Dashboard from "./features/menu/Dashboard.vue";
+
+// Auth Features Page
 import Login from "./features/auth/Login.vue";
 import Register from "./features/auth/register.vue";
+// import Logout from "./features/auth/Logout.vue";
+
 import Mycash from "./features/manage/Mycash.vue";
 import Transaction from "./features/manage/Transaction.vue";
+import Dashboard from "./features/menu/Dashboard.vue";
 import httpInterceptor from "./lib/axiosConfig";
 
 const routes = [
@@ -17,7 +21,19 @@ const routes = [
     name: "login",
     component: Login,
   },
-  
+  {
+    path: "/logout",
+    name: "logout",
+    beforeEnter: async () => {
+      await httpInterceptor.get("/sanctum/csrf-cookie");
+
+      const response = await httpInterceptor.post("/api/v1/logout");
+
+      if (response.status === 401 || response.status === 200) {
+        return { name: "login" };
+      }
+    },
+  },
   {
     path: "/dashboard",
     name: "dashboard",

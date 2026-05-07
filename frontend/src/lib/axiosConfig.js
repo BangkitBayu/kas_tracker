@@ -34,7 +34,7 @@ httpInterceptor.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {
+  async (error) => {
     if (error.response?.status === 422) {
       return Promise.reject(error.response);
     } else if (error.response?.status === 401) {

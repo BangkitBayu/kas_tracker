@@ -58,6 +58,7 @@ const submitForm = async () => {
     } catch (error) {
       if (error.response?.status === 401) {
         setErrors.value = { form: error.response.data.message };
+        // return router.push({ name: "login" });
       }
     }
   }
