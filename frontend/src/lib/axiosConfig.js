@@ -37,10 +37,9 @@ httpInterceptor.interceptors.response.use(
   (error) => {
     if (error.response?.status === 422) {
       return Promise.reject(error.response);
+    } else if (error.response?.status === 401) {
+      window.location.href = "/login";
     }
-    // } else if (error.response?.status === 401) {
-    //   window.location.href = "/login";
-    // }
     return Promise.reject(error);
   },
 );
