@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->statefulApi();
         $middleware->alias([
-            'checkusersession' => \App\Http\Middleware\CheckUserSession::class
+            'checkusersession' => \App\Http\Middlewsare\CheckUserSession::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

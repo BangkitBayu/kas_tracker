@@ -14,11 +14,14 @@ class Logout extends Controller
      */
     public function __invoke(Request $request): JsonResponse
     {
-        Auth::logout();
+        if ($request->user() !== null) {
+            Auth::logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-        return response()->json(['message' => 'User logged out successfully'], 200);
+            return response()->json(['message' => 'User logged out successfully'], 200);
+        }
+        return response()->json(['message' => "Failed, your session timeout.Please login and try again."], 401);
     }
 }

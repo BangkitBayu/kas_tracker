@@ -21,7 +21,7 @@ class CheckUserSession
             return $next($request);
         }
         return response()->json([
-            'message' => "Session timeout"
+            'message' => "Failed you are session timeout.Please login and try again."
         ], 401);
     }
 }
