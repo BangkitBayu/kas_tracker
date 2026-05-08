@@ -3,6 +3,7 @@
 use App\Http\Controllers\auth\Login;
 use App\Http\Controllers\auth\Logout;
 use App\Http\Controllers\auth\Register;
+use App\Http\Controllers\menu\DashboardController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ Route::group(["prefix" => 'v1'], function () {
         Route::post('/login', Login::class);
         Route::post('/logout', Logout::class);
 
+        Route::resource('dashboard' , DashboardController::class);
         // Route::post('/dashboard', Register::class)->middleware('checkusersession');
     });
 });
