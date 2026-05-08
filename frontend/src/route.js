@@ -3,7 +3,6 @@ import { createRouter, createWebHistory } from "vue-router";
 // Auth Features Page
 import Login from "./features/auth/Login.vue";
 import Register from "./features/auth/register.vue";
-// import Logout from "./features/auth/Logout.vue";
 
 import Mycash from "./features/manage/Mycash.vue";
 import Transaction from "./features/manage/Transaction.vue";
@@ -25,12 +24,13 @@ const routes = [
   {
     path: "/logout",
     name: "logout",
-    beforeEnter: async () => {
-      await httpInterceptor.get("/sanctum/csrf-cookie");
+    beforeEnter: async (next) => {
+      try {
+        await httpInterceptor.get("/sanctum/csrf-cookie");
+        await httpInterceptor.post("/api/v1/logout");
 
-      const response = await httpInterceptor.post("/api/v1/logout");
-
-      if (response.status === 401 || response.status === 200) {
+        return { name: "login" };
+      } catch (error) {
         return { name: "login" };
       }
     },
