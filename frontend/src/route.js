@@ -9,6 +9,7 @@ import Mycash from "./features/manage/Mycash.vue";
 import Transaction from "./features/manage/Transaction.vue";
 import Dashboard from "./features/menu/Dashboard.vue";
 import httpInterceptor from "./lib/axiosConfig";
+import authStore from "./features/auth/auth.store";
 
 const routes = [
   {
@@ -67,12 +68,19 @@ export const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    const response = await httpInterceptor.get("/user-session");
-
-    if (response.status === 401) {
-      return { name: "login" };
+    if (authStore.State.isAuthenticated) {
+      next();
     }
-    return next();
+
+    try {
+      const response = await httpInterceptor.get("/user-session");
+
+      authStore.State = response.data;
+
+      next();
+    } catch (error) {
+      next({ name: "login" });
+    }
   }
-  return next();
+  next();
 });

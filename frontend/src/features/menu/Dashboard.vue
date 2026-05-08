@@ -1,6 +1,9 @@
 <script setup lang="js">
 import Footer from "../../components/Footer.vue";
 import Header from "../../components/Header.vue";
+import authStore from "../auth/auth.store";
+
+const user = authStore.State.user.data;
 </script>
 
 <template>
@@ -11,7 +14,7 @@ import Header from "../../components/Header.vue";
         <h1 class="font-bold text-xl text-black/70">Dashboard</h1>
         <div class="rounded shadow p-4 space-y-2">
           <h1 class="text-2xl text-black/80">
-            Welcome to your Dashboard, Bangkit Bayu! 👋
+            Welcome to your Dashboard, {{ user.username }}! 👋
           </h1>
           <p class="text-black/75">Let's track and record your cash flow.</p>
         </div>
@@ -26,14 +29,16 @@ import Header from "../../components/Header.vue";
           <h3 class="text-sm text-black/70">Total Saldo Kamu</h3>
           <h1 class="font-bold text-xl">1.000.000</h1>
         </div>
-        <div class="rounded shadow p-4 flex items-center">
+        <div
+          class="rounded shadow p-4 flex items-center relative overflow-y-hidden"
+        >
           <div
             class="flex flex-col items-center justify-center w-[45%] space-y-2"
           >
             <h3 class="text-sm text-black/70">Total Pemasukan</h3>
             <h1 class="font-bold text-xl">1.000.000</h1>
           </div>
-          <hr class="border-gray-200 w-[20%] h-full rotate-90" />
+          <hr class="border-gray-200 w-[20%] h-[10%] rotate-90" />
           <div
             class="flex flex-col items-center justify-center w-[45%] space-y-2"
           >
