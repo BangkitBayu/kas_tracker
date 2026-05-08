@@ -11,7 +11,7 @@ import {
 import BaseButton from "../../components/BaseButton.vue";
 import BaseForm from "../../components/BaseForm.vue";
 import { useRouter } from "vue-router";
-import AuthService from "../../services/auth.service";
+import AuthService from "./auth.service";
 
 const router = useRouter();
 const authService = new AuthService();

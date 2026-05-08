@@ -12,11 +12,10 @@ const expandedMenu = () => {
 const logoutUser = () => {
   router.push({ name: "logout" });
 };
-
 </script>
 <template>
   <header
-    class="top-0 w-full min-h-20 shadow relative flex justify-between items-center px-6 py-2 z-10"
+    class="top-0 w-full min-h-20 shadow relative flex justify-between items-center px-6 py-2 z-999"
   >
     <div class="logo flex items-center gap-2">
       <img src="../assets/img/kas-tracker-logo.png" alt="logo" class="w-6" />
@@ -26,12 +25,29 @@ const logoutUser = () => {
     <nav
       :class="
         isExpanded
-          ? 'shadow right-0 absolute p-4 h-screen flex flex-col gap-y-5 bg-white top-20 w-70 overflow-y-auto'
+          ? 'fixed right-0 top-0 h-screen z-50 p-4 flex flex-col gap-y-5 bg-white w-72 shadow-xl'
           : 'hidden'
       "
     >
       <div class="w-full">
-        <h3 class="font-medium text-black/60 text-sm">Menu</h3>
+        <button @click="expandedMenu" class="flex justify-self-end">
+          <svg
+            class="stroke-black/60"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M4 5h12M4 12h16M4 19h8"
+            />
+          </svg>
+        </button>
+        <h3 class="font-medium text-black/60 text-sm mt-5">Menu</h3>
         <ul class="flex flex-col text-black/60 text-lg mt-3 w-full">
           <router-link :to="{ name: 'dashboard' }" class="group">
             <li class="p-2 flex items-start">

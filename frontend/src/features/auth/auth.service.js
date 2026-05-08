@@ -1,4 +1,4 @@
-import httpInterceptor from "../lib/axiosConfig";
+import httpInterceptor from "../../lib/axiosConfig";
 
 class AuthService {
   async register(
