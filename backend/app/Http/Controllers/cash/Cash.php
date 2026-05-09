@@ -4,6 +4,7 @@ namespace App\Http\Controllers\cash;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\cash\storeCash;
+use App\Http\Requests\cash\updateCash;
 use App\Models\Cash;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -54,16 +55,22 @@ class CashController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(updateCash $request, string $id): JsonResponse
     {
-        //
+        $request->validated();
+
+        Cash::where('id', $id)->update(['name' => $request->name, 'nominal' => $request->nominal, 'date' => $request->date, 'user_id' => $request->user()->id]);
+
+        return response()->json(['message' => 'Update cash successfully'], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
-        //
+        Cash::destroy($id);
+
+        return response()->json(['message' => 'Delete cash successfully'], 200);
     }
 }
