@@ -8,15 +8,22 @@ use App\Http\Requests\cash\updateCash;
 use App\Models\Cash;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CashController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $cashs = Cash::where('user_id', Auth::user()->id)->get(['id', 'name', 'nominal', 'date']);
+
+        if ($cashs->isEmpty()) {
+            return response()->json(['message' => "Data not found"], 404);
+        }
+
+        return response()->json(["message" => "Data found", "data" => $cashs]);
     }
 
     /**
@@ -30,7 +37,7 @@ class CashController extends Controller
             'name' => $request->name,
             'nominal' => $request->nominal,
             'date' => $request->date,
-            'user_id' => $request->user()->id
+            'user_id' => Auth::user()->id
         ]);
 
 
@@ -47,10 +54,7 @@ class CashController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    public function show(string $id) {}
 
     /**
      * Update the specified resource in storage.
@@ -59,7 +63,7 @@ class CashController extends Controller
     {
         $request->validated();
 
-        Cash::where('id', $id)->update(['name' => $request->name, 'nominal' => $request->nominal, 'date' => $request->date, 'user_id' => $request->user()->id]);
+        Cash::where('id', $id)->update(['name' => $request->name, 'nominal' => $request->nominal, 'date' => $request->date]);
 
         return response()->json(['message' => 'Update cash successfully'], 200);
     }

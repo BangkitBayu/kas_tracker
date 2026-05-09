@@ -10,5 +10,6 @@ Route::get('/user-session', function (Request $request): JsonResponse {
     if ($user !== null) {
         return response()->json(['message' => "User session found", 'data' => $user], 200);
     }
-    return response()->json(['message' => "Failed, your session timeout.Please login and try again."], 401);
+    return response()->json(['message' => "Unauthenticated"], 401);
 })->middleware('web');
+
