@@ -4,8 +4,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import Login from "./features/auth/Login.vue";
 import Register from "./features/auth/register.vue";
 
-import Mycash from "./features/manage/Mycash.vue";
-import Transaction from "./features/manage/Transaction.vue";
+import Mycash from "./features/cash/Mycash.vue";
+import Transaction from "./features/transactions/Transaction.vue";
 import Dashboard from "./features/menu/Dashboard.vue";
 import httpInterceptor from "./lib/axiosConfig";
 import authStore from "./features/auth/auth.store";
@@ -24,7 +24,7 @@ const routes = [
   {
     path: "/logout",
     name: "logout",
-    beforeEnter: async (next) => {
+    beforeEnter: async () => {
       try {
         await httpInterceptor.get("/sanctum/csrf-cookie");
         await httpInterceptor.post("/api/v1/logout");

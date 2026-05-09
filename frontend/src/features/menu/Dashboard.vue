@@ -23,7 +23,7 @@ onMounted(async () => {
 <template>
   <div>
     <Header></Header>
-    <main class="min-h-screen w-full z-10">
+    <main class="min-h-screen w-full z-10 overflow-x-hidden">
       <div
         v-if="isLoading == true"
         class="flex items-center justify-center min-h-screen"
